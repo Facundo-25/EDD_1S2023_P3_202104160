@@ -1,0 +1,161 @@
+<!Doctype HTML>
+<html>
+<head>
+	<title></title>
+	<link rel="stylesheet" href="../Style/style2.css" type="text/css"/>
+
+     <script src="../Src/pages/code2.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+
+<body>
+	
+	<div id="mySidenav" class="sidenav">
+        
+        <p class="logo"><span><img src="../Pictures/Icono.png" width="40" height="40"/></span> <img src="../Pictures/Nombre2.png" width="200" height="40"/></p>
+        
+        
+        
+        
+        <div class="carga-masiva" onclick="F_CargaMasiva()" >
+        <p class="logo"><span><img src="../Pictures/Icon3.png" width="40" height="40"/></span>   Carga Masiva</p>
+        </div>
+        
+        
+        <div class="reporte-chats" onclick="F_ReporteChats()" >
+        <p class="logo"><span><img src="../Pictures/Icon5.png" width="40" height="40"/></span>    Reporte de Chats</p>
+        </div>
+        
+        
+        <div class="cerrar-sesion" onclick="F_CerrarSesion()" >
+        <p class="logo"><span><img src="../Pictures/Icon4.png" width="40" height="40"/></span>    Cerrar Sesión</p>
+        </div>
+        
+        
+        
+        
+        
+    </div>
+    
+    
+<div id="main">
+    <div class="head">
+		<div class="col-div-6">
+                <span style="font-size:30px;cursor:pointer; color: white;" class="nav"  >&#9776;</span>
+                <span style="font-size:30px;cursor:pointer; color: white;" class="nav2"  >&#9776;</span>
+        </div>
+	<div class="col-div-6">
+	<div class="profile">
+		<img src="../Pictures/Icono_Administrador.png" class="pro-img" />
+		<p>Administrador<span>202104160</span></p>
+	</div>
+</div>
+	<div class="clearfix"></div>
+</div>
+
+	
+</div>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+
+  $(".nav").click(function(){
+    $("#mySidenav").css('width','70px');
+    $("#main").css('margin-left','70px');
+    $(".logo").css('visibility', 'hidden');
+    $(".logo span").css('visibility', 'visible');
+    $(".logo span").css('margin-left', '-10px');
+    $(".icon-a").css('visibility', 'hidden');
+    $(".icons").css('visibility', 'visible');
+    $(".icons").css('margin-left', '-8px');
+    $(".nav").css('display','none');
+    $(".nav2").css('display','block');
+  });
+
+$(".nav2").click(function(){
+    $("#mySidenav").css('width','300px');
+    $("#main").css('margin-left','300px');
+    $(".logo").css('visibility', 'visible');
+    $(".icon-a").css('visibility', 'visible');
+    $(".icons").css('visibility', 'visible');
+    $(".nav").css('display','block');
+    $(".nav2").css('display','none');
+ });
+
+</script>
+    
+
+    
+
+    
+<center>
+<table id="tabla-datos">
+  <thead>
+    <tr>
+      <th colspan="3" style="text-align:center; background-color: #292626;">Usuarios</th>
+    </tr>
+    <tr>
+      <th>Carnet</th>
+      <th>Nombre</th>
+      <th>Contraseña</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Aquí se agregarán las filas de datos -->
+  </tbody>
+</table>
+</center>
+    
+    
+    
+<center>
+<table id="tabla-datos2">
+  <thead>
+    <tr>
+      <th colspan="3" style="text-align:center; background-color: #292626;">Usuarios</th>
+    </tr>
+    <tr>
+      <th>Carnet</th>
+      <th>Nombre</th>
+      <th>Contraseña</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Aquí se agregarán las filas de datos -->
+  </tbody>
+</table>
+</center>
+    
+    
+
+<center>
+<table id="tabla-datos3">
+  <thead>
+    <tr>
+      <th colspan="5" style="text-align:center; background-color: #292626;">Usuarios</th>
+    </tr>
+    <tr>
+        <th>Propietario</th>
+        <th>Destino</th>
+        <th>Ubicación</th>
+        <th>Archivo</th>
+        <th>Permisos</th>      
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Aquí se agregarán las filas de datos -->
+  </tbody>
+</table>
+</center>
+    
+    
+    
+    
+    
+
+</body>
+
+
+</html>
