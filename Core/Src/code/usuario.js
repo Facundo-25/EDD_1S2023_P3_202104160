@@ -1,5 +1,6 @@
-export class Usuario {
-  constructor(nombre, carnet, password, carpetaRaiz) {
+ class Usuario {
+  constructor(nombre, carnet, password, carpetaRaiz,id) {
+    this.id = id;
     this.nombre = nombre;
     this.carnet = carnet;
     this.password = password;

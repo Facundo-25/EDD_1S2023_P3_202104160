@@ -2,7 +2,7 @@ body{
 	margin:0px;
 	padding: 0px;
 	background-color: #3d3f3d;
-	overflow: hidden;
+	overflow: auto;
 	font-family: system-ui;
 }
 
@@ -29,7 +29,7 @@ body{
 .cerrar-sesion {
   font-size: 20px;
   font-weight: bold;
-  padding: 10px;
+  padding: 5px;
   background-color: #FC8405;
   border-radius: 5px;
   display: flex;
@@ -47,7 +47,7 @@ body{
 .reporte-chats {
   font-size: 20px;
   font-weight: bold;
-  padding: 10px;
+  padding: 5px;
   background-color: #14B20F;
   border-radius: 5px;
   display: flex;
@@ -65,7 +65,7 @@ body{
 .carga-masiva {
   font-size: 20px;
   font-weight: bold;
-  padding: 10px;
+  padding: 5px;
   background-color: #289B9C;
   border-radius: 5px;
   display: flex;
@@ -81,6 +81,108 @@ body{
 
 
 
+.limpieza-local {
+  font-size: 20px;
+  font-weight: bold;
+  padding: 5px;
+  background-color: #3813F0;
+  border-radius: 5px;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-around;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.limpieza-local:hover {
+  background-color: #5377F1;
+}
+
+
+
+.carga-masiva2 {
+  font-size: 20px;
+  font-weight: bold;
+  padding: 5px;
+  background-color: #2e8102;
+  border-radius: 5px;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-around;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.carga-masiva2:hover {
+  background-color: #54e528;
+}
+
+
+
+.tabla_hash {
+  font-size: 20px;
+  font-weight: bold;
+  padding: 5px;
+  background-color: #80141c;
+  border-radius: 5px;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-around;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.tabla_hash:hover {
+  background-color: rgb(217, 36, 43);
+}
+
+
+
+.Tabla-InOrden {
+  font-size: 20px;
+  font-weight: bold;
+  padding: 5px;
+  background-color: #09726e;
+  border-radius: 5px;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-around;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.Tabla-InOrden:hover {
+  background-color: #92e6e6;
+}
+
+
+
+
+.Tabla-Hash {
+  font-size: 20px;
+  font-weight: bold;
+  padding: 5px;
+  background-color: #8d6210;
+  border-radius: 5px;
+  display: flex;
+  align-items: stretch;
+  justify-content: space-around;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.Tabla-Hash:hover {
+  background-color: #cb7118;
+}
+
+
+
+
+
+
+
+
+
 
 
 
@@ -89,7 +191,7 @@ body{
 
 
 .sidenav {
-  height: 100%;
+ height: 100vh;
   width: 300px;
   position: fixed;
   z-index: 1;
@@ -327,13 +429,8 @@ td, th {
 
 
 
-.mi-div {
-  background-color: #ff0000; /* Cambia el color a tu gusto */
-  width: 75%;
-  height: 15px;
-  padding-bottom: 75%; /* La altura es igual al 75% de la anchura */
-  margin: 0 auto; /* Centra horizontalmente */
-}
+
+
 
 
 
@@ -366,6 +463,10 @@ td, th {
 #tabla-datos2 tbody tr:hover {
   background-color: #0490ec;
 }
+
+
+
+
 
 
 
