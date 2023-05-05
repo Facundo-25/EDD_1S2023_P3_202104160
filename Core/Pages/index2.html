@@ -12,6 +12,7 @@
     <script src="../Src/code/table_hash.js"></script>
     <script src="../Src//code//usuario_fijo.js"> </script>
     <script src="../Src/code/crypto-js.js"></script>
+    <script src="../Src/code/arbol_enario.js"></script>
     
     
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -176,6 +177,36 @@ $(".nav2").click(function(){
   </tbody>
 </table>
 </center>
+   
+   
+   
+   
+<script>
+    // Obtenemos la referencia a la tabla
+const tabla = document.getElementById("tabla-datos3").getElementsByTagName('tbody')[0];
+
+// Obtenemos los datos de la matriz en el localStorage
+const datos = JSON.parse(localStorage.getItem("tabla_permisos")) || [];
+
+// Recorremos los datos y creamos una fila para cada uno
+for (let i = 0; i < datos.length; i++) {
+  const fila = tabla.insertRow();
+  const celdaPropietario = fila.insertCell();
+  const celdaDestino = fila.insertCell();
+  const celdaUbicacion = fila.insertCell();
+  const celdaArchivo = fila.insertCell();
+  const celdaPermisos = fila.insertCell();
+  celdaPropietario.innerHTML = datos[i].propietario;
+  celdaDestino.innerHTML = datos[i].destino;
+  celdaUbicacion.innerHTML = datos[i].ubicacion;
+  celdaArchivo.innerHTML = datos[i].archivo;
+  celdaPermisos.innerHTML = datos[i].permisos;
+}
+</script>
+   
+   
+   
+   
     
     
     

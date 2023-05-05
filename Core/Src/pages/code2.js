@@ -34,6 +34,9 @@ function F_filltableHash(){
     
 
     llenarTablaUsuarios(vectorhash);
+    
+    
+    //localStorage.setItem("tabla_permisos", []);
 }
 
 

@@ -5,5 +5,6 @@
     this.password = password;
     this.index = index;
     this.encriptado = encriptado;
+    this.carpetas = new Tree_Enario();
   }
 }

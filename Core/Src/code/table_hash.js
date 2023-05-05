@@ -181,6 +181,9 @@ class HashTable{
             console.log(`[${index}] -> carnet: ${node.carnet}, nombre: ${node.nombre}, password: ${node.password}`);
 
             matriztemporal.push(new UsuarioF(node.nombre, node.carnet, node.password , index,  cifrarConAES(node.password)));  
+              
+            insertUserFijos(new UsuarioF(node.nombre, node.carnet, node.password , index,  cifrarConAES(node.password)));
+              generarDiccionario(node.carnet);
 
           } else {
             console.log(`[${index}] -> vacío`);

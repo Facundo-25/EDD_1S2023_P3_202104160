@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+  <link rel="stylesheet" type="text/css" href="../Style/style3.css">
+  <link rel="shortcut icon" href="Pictures/Icono.png">s
+  <meta charset="UTF-8">
+  
+  
+  <script src="../JS/Graphviz/viz.js"></script>
+  <script type="text/javascript" src="../JS/Support/Files.js"></script>
+  <script type="text/javascript" src="../JS/Support/Files2.js"></script>
+  <script type="text/javascript" src="../JS/Support/Files3.js"></script>
+  <script type="text/javascript" src="../JS/Support/Files4.js"></script>
+  <script type="text/javascript" src="../JS/Support/Files5.js"></script>
+  <script type="text/javascript" src="../JS/Support/js_support2.js"></script>
+  <script type="text/javascript" src="../JS/js3.js"></script>
+
+   <script>
+       
+        let Usuario_Actual_W = JSON.parse(localStorage.getItem("User_Current"));
+       
+        document.title = Usuario_Actual_W.nombre;
+       
+        
+        let carpetas = new Tree_Enario();
+       
+  </script>
+
+
+</head>
+
+<body>
+  
+
+
+  
+      <nav class="main-menu">
+        <ul>
+          <li>
+            <img src="../Pictures/Icon5.png"  width="55" height="55">
+            <i class="fa fa-home fa-2x"></i>
+            <span class="nav-text">
+            <input type="text" class="textbox" id="nombre_carpeta" placeholder="Nombre">
+            <input type="submit" class="boton-elegante" name="" value="Crear Carpeta" onclick="option1()">
+            </span>
+          </li>
+          <img src="../Pictures/Icon6.png"  width="55" height="55">
+          <li class="has-subnav">
+            <i class="fa fa-home fa-2x"></i>
+            <span class="nav-text">
+            <input type="text" class="textbox" id="nombre_carpeta2" placeholder="Nombre">
+            <input type="submit" class="boton-elegante" value="Eliminar Carpeta" onclick="option2()">
+            </span>
+          </li>
+          <img src="../Pictures/Icon3.png"  width="55" height="55">
+          <li class="has-subnav">
+            <i class="fa fa-home fa-2x"></i>
+            <span class="nav-text">
+              <input type="text" class="textbox2"  id="nombre_carpeta3" placeholder="Nombre">
+              <input type="file" id="seleccionador-archivos" style="display:none" onchange="option3()">
+              <button class="boton-elegante" onclick="document.getElementById('seleccionador-archivos').click()">Subir Archivos</button>
+            </span>  
+          </li>
+          <li>
+            <img src="../Pictures/Icon5.png"  width="55" height="55">
+            <i class="fa fa-home fa-2x"></i>
+            <span class="nav-text">
+            <input type="submit" class="boton-elegante" name="" value="Gŕafica de Arbol" onclick="option4()">
+            </span>
+          </li>
+          
+          <li>
+            <img src="../Pictures/Icon5.png"  width="55" height="55">
+            <i class="fa fa-home fa-2x"></i>
+            <span class="nav-text">
+               
+                <center><label for="archivo" id="Label_Compartido" class="archivo-label">/</label></center>
+            
+                
+
+                <div class="container2">
+                  <div class="box1">
+                    <label for="usuario" id="label-select">Usuario:</label>
+                    <div class="select">
+                      <select size="1" id="usuario">
+                      </select>
+                      <div class="arrow"></div>
+                    </div>
+                  </div>
+                  <div class="box2">
+                    <label for="lectura" id="label-select">Lectura:</label>
+                    <div class="select">
+                      <select size="1" id="lectura">
+                        <option>Si</option>
+                        <option>No</option>
+                      </select>
+                      <div class="arrow"></div>
+                    </div>
+                  </div>
+                  <div class="box3">
+                    <label for="escritura" id="label-select">Escritura:</label>
+                    <div class="select">
+                      <select size="1" id="escritura">
+                        <option>Si</option>
+                        <option>No</option>
+                      </select>
+                      <div class="arrow"></div>
+                    </div>
+                  </div>
+                </div>
+
+                
+               <script>
+                  var userFijos = JSON.parse(localStorage.getItem("User_Fijos"));
+                  var selectElement = document.getElementById("usuario");
+                  for(var i = 0; i < userFijos.length; i++){
+                    var optionElement = document.createElement("option");
+                    optionElement.value = userFijos[i].carnet;
+                    optionElement.text = userFijos[i].carnet + " - " + userFijos[i].nombre;
+                    selectElement.appendChild(optionElement);
+                  }
+                </script>
+
+                
+                
+                
+                
+                <center><input type="submit" class="boton-elegante" name="" value="Compartir" onclick="optionA()"></center>
+                
+                
+            </span>
+          </li>
+
+
+          <img src="../Pictures/Icon4.png"  width="55" height="55">
+          <li class="has-subnav">
+            <i class="fa fa-home fa-2x"></i>
+            <span class="nav-text">
+            <input type="submit" class="boton-elegante" value="Cerrar Sesión" onclick="option6()">
+            </span>
+            </a>
+          </li>
+          
+        </ul>
+      </nav>
+
+
+  
+<h1 id="titulo_pagina" style="font-family: Arial, sans-serif; font-size: 36px; font-weight: bold; color: #ffffff; text-align: center;">Administrador</h1>
+
+
+
+<script>
+      const h1 = document.querySelector('h1');
+      h1.textContent = 'Bienvenido ' + Usuario_Actual_W.carnet;
+</script>
+
+
+
+<h5 id="titulo_pagina2" style="font-family: Arial, sans-serif; font-size: 20px; font-weight: bold; color: #ffffff; text-align: center;">Administrador</h5>
+
+
+
+<script>
+  const h2 = document.querySelector('h5');
+  h2.textContent = Usuario_Actual_W.nombre;
+</script>
+
+
+
+
+<div class="contenedor">
+  <label class="etiqueta">/</label>
+  <input type="submit" class="boton2" name="" value="Inicio" onclick="option7()">
+</div>
+
+
+
+
+
+<div class="container">
+  <div class="center-div">
+
+    <div class="row mt-4" id="carpetas">
+      <!-- Aquí se agregarán las carpetas creadas dinámicamente -->
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<center>
+  <div id="graph_f3"></div>
+</center>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<center>
+  <div id="graph_f4"></div>
+</center>
+
+
+
+
+</body>
+
+
+</html>
