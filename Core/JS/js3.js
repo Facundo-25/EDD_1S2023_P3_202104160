@@ -8,7 +8,7 @@ function option1(){
 
     //OBTENIENDO EL VALOR DE LA NAVEGACIÓN
     var labelElement = document.querySelector('.etiqueta');
-    var textoLabel = labelElement.textContent;
+    var textoLabel = labelElement.value;
     
 
 
@@ -37,7 +37,7 @@ function option2(){
     var texto = textbox.value;
     
     var labelElement = document.querySelector('.etiqueta');
-    var textoLabel = labelElement.textContent;
+    var textoLabel = labelElement.value;
 
 
     carpetas.Delete_Node(textoLabel,texto);
@@ -62,7 +62,7 @@ function option3() {
 
   // Obtener el valor de la navegación
   const labelElement = document.querySelector('.etiqueta');
-  const textoLabel = labelElement.textContent;
+  const textoLabel = labelElement.value;
   console.log("Valor de la etiqueta: ", textoLabel);
 
   // Obtener el nuevo nombre
@@ -163,14 +163,12 @@ function option7(){
   divCarpetas.innerHTML = "";
 
 
-  var labelElement = document.querySelector('.etiqueta');
-  var textoLabel = labelElement.textContent;
+  var input = document.querySelector(".etiqueta"); // seleccionamos el elemento input por su clase CSS
+  input.value = "/"; // modificamos el valor del input
 
-  textoLabel = "/";
 
-  labelElement.textContent = textoLabel;
-
-  carpetas.getHTML(textoLabel);
+  
+  carpetas.getHTML("/");
 
 
 }
@@ -245,7 +243,7 @@ function Insertar_Carpeta_Div(nombre_del_div, type) {
            divCarpetas.innerHTML = "";
 
             var labelElement = document.querySelector('.etiqueta');
-            var textoLabel = labelElement.textContent;
+            var textoLabel = labelElement.value;
 
 
             if(textoLabel == "/"){
@@ -257,7 +255,11 @@ function Insertar_Carpeta_Div(nombre_del_div, type) {
             }
 
         
-        labelElement.textContent = textoLabel;
+        
+        labelElement.value = textoLabel // modificamos el valor del input
+        
+        
+        
         carpetas.getHTML(textoLabel);  
         
     });
@@ -382,8 +384,6 @@ function Insertar_Carpeta_Div(nombre_del_div){
 
 
 
-
-
 function optionA() {
     
     let matriz1 = JSON.parse(localStorage.getItem("tabla_permisos")) || []
@@ -395,7 +395,7 @@ function optionA() {
     
   //OBTENIENDO EL VALOR DE LA NAVEGACIÓN
   var labelElement = document.querySelector('.etiqueta');
-  var ubicacion = labelElement.textContent;
+  var ubicacion = labelElement.value;
     
   //OBTENIENDO EL VALOR DE LA NAVEGACIÓN
   const label = document.getElementById("Label_Compartido");
@@ -438,5 +438,117 @@ class node_permisos{
         this.permisos = permisos;
     }
 }
+
+
+
+
+function getFormattedDateTime() {
+  const date = new Date();
+  const options = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+  const formattedDateTime = date.toLocaleString('es-MX', options).replace(',', '');
+
+  return formattedDateTime;
+}
+
+
+
+
+function increaseCount() {
+  let count = localStorage.getItem("count");
+  count++;
+  localStorage.setItem("count", count);
+  return count;
+}
+
+
+
+function generateHash(index, timestamp, transmitter, receiver, message) {
+  const messageString = `${index}${timestamp}${transmitter}${receiver}${message}`;
+  return CryptoJS.SHA256(messageString).toString();
+}
+
+
+
+
+function enviar(){
+    
+    const matriz_mensaje = JSON.parse(localStorage.getItem("mensajeria")) || [];
+    
+    
+    const destino = document.getElementById("usuario2").value;
+        
+     //OBTENIENDO EL VALOR DE LA NAVEGACIÓN
+    const label = document.getElementById("chat_mensajes");
+    const mensaje = label.value;
+  
+
+    
+    //alert("Enviando mensaje: "+destino+" contenido: "+mensaje);
+    
+    
+
+
+    // Obtener el elemento div
+            const chatDiv = document.querySelector('.chat_mensajeria');
+    
+    
+     // En la página donde recuperas el objeto BlockChain:
+            const blockchainData = JSON.parse(localStorage.getItem('blockChain'));
+            const blockchain = new BlockChain();
+            blockchain.chain = blockchainData.chain;
+            blockchain.currentTransactions = blockchainData.currentTransactions;
+    
+    
+    /*
+    
+     blockchain.insert(Usuario_Actual_W.carnet, destino, mensaje);
+    
+    
+    
+    const html_VAR = blockchain.getMessages(Usuario_Actual_W.carnet, destino);
+    
+    chatDiv.innerHTML = html_VAR;
+    
+    
+    
+    localStorage.setItem('blockChain', JSON.stringify(blockchain));
+    
+    
+    */
+    
+    
+    
+    if(mensaje){
+    
+        const mens = {
+            index: increaseCount(),
+            Transmitter:   Usuario_Actual_W.carnet,
+            Receiver: destino,
+            Message:  mensaje,
+            Timestamp: getFormattedDateTime(),
+            PreviusHash : "undefined" ,
+            Hash:"undefined"
+        }
+
+         matriz_mensaje.push(mens);
+
+         localStorage.setItem("mensajeria", JSON.stringify(matriz_mensaje));
+
+        chatDiv.innerHTML = generarHTML(Usuario_Actual_W.carnet ,  destino  );
+
+        label.value = "";
+        
+    } else {
+        
+        //alert("Debe ingresar un mensaje");
+    }
+
+}
+
+
+
+
+
+
 
 

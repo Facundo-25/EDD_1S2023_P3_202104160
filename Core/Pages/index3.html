@@ -3,7 +3,7 @@
 <head>
 
   <link rel="stylesheet" type="text/css" href="../Style/style3.css">
-  <link rel="shortcut icon" href="Pictures/Icono.png">s
+  <link rel="shortcut icon" href="../Pictures/Icono.png">s
   <meta charset="UTF-8">
   
   
@@ -13,8 +13,13 @@
   <script type="text/javascript" src="../JS/Support/Files3.js"></script>
   <script type="text/javascript" src="../JS/Support/Files4.js"></script>
   <script type="text/javascript" src="../JS/Support/Files5.js"></script>
+   <script type="text/javascript" src="../Src/code/crypto-js.js"></script>
+
+
+  <script type="text/javascript" src="../Src/code/block_chain.js"></script>
   <script type="text/javascript" src="../JS/Support/js_support2.js"></script>
   <script type="text/javascript" src="../JS/js3.js"></script>
+   
 
    <script>
        
@@ -22,6 +27,7 @@
        
         document.title = Usuario_Actual_W.nombre;
        
+        //console.log(window.myListUser.length);
         
         let carpetas = new Tree_Enario();
        
@@ -171,25 +177,237 @@
 
 
 <div class="contenedor">
-  <label class="etiqueta">/</label>
+  <input type="text" class="etiqueta" value="/">
+  <input type="submit" class="boton2" name="" value="Buscar">
   <input type="submit" class="boton2" name="" value="Inicio" onclick="option7()">
 </div>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+<div class="container">
+ <div class="chat-header">Mi EDD-GoDrive</div>
+      <div class="center-div">
+            <div class="row_mt-4" id="carpetas">
+              <!-- Aquí se agregarán las carpetas creadas dinámicamente -->
+            </div>
+      </div>
+</div>
+
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
 
 
 
 
 
 <div class="container">
-  <div class="center-div">
+    <div class="chat-header">Tabla de Compartidos</div>
+        <div class = "center-div">
+            <table id="tabla-datos3">
+              <thead>
+                <tr>
+                  <th>Propietario</th>
+                  <th>Ubicación</th>
+                  <th>Archivo</th>
+                  <th>Permisos</th>      
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Aquí se agregarán las filas de datos -->
+              </tbody>
+            </table>
+        </div>
+</div> 
 
-    <div class="row mt-4" id="carpetas">
-      <!-- Aquí se agregarán las carpetas creadas dinámicamente -->
-    </div>
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+
+
+<div class="chat-container">
+       
+        <div class="chat-header">Mensajeria</div>
+        
+        <div class="div_chat_auxiliar">
+        
+                
+               <center>
+               <label for="archivo" id="Label_Compartido" class="archivo-label2">Receptor</label>
+       
+               
+               <div class="select_chat">
+                    <select size="1" id="usuario2">
+                    </select>
+                    <div class="arrow"></div>
+                </div> 
+                </center>             
+    
+    
+        </div>
+  
+  
+  
+ <div class="chat_mensajeria">
+   
+       
   </div>
+  
+  
+  <div class="chat-input">
+       
+        <input type="text" id="chat_mensajes" placeholder="Escriba su mensaje">
+        <button onclick="enviar()">Enviar</button>
+        
+  </div>
+  
 </div>
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    var userFijos = JSON.parse(localStorage.getItem("User_Fijos"));
+    var selectElement = document.getElementById("usuario2");
+    for(var i = 0; i < userFijos.length; i++){
+        var optionElement = document.createElement("option");
+        optionElement.value = userFijos[i].carnet;
+        optionElement.text = userFijos[i].carnet + " - " + userFijos[i].nombre;
+        selectElement.appendChild(optionElement);
+    }
+</script>
+
+
+	<script>
+		function mostrarSeleccion() {
+			// obtener el elemento select
+			const select = document.getElementById("usuario2");
+			// obtener el valor seleccionado
+			const seleccion_usuario_receptor = select.value;
+			// mostrar el mensaje
+			//alert("Se ha seleccionado a: " + seleccion);
+            
+            
+            
+            
+            
+            //AGREGAR CONTENIDO EN DIV;
+            // Obtener el elemento div
+            const chatDiv = document.querySelector('.chat_mensajeria');
+            
+            
+            
+            
+            // En la página donde recuperas el objeto BlockChain:
+            const blockchainData = JSON.parse(localStorage.getItem('blockChain'));
+            const blockchain = new BlockChain();
+            blockchain.chain = blockchainData.chain;
+            blockchain.currentTransactions = blockchainData.currentTransactions;
+
+            const html_VAR = blockchain.getMessages(Usuario_Actual_W.carnet, seleccion_usuario_receptor);
+            
+            
+            chatDiv.innerHTML = html_VAR;
+            
+            
+            
+            
+            //const chatDiv = document.querySelector(".chat_mensajeria");
+            chatDiv.innerHTML = generarHTML(Usuario_Actual_W.carnet ,  seleccion_usuario_receptor  );
+
+
+            
+		}
+        
+        
+        
+        
+        function generarHTML(emisor, receptor) {
+            
+            
+              const mensajes = JSON.parse(localStorage.getItem("mensajeria"));
+              let html = "";
+
+              let hayMensajes = false;
+
+              mensajes.forEach((mensaje) => {
+                if (
+                  (mensaje.Transmitter == emisor && mensaje.Receiver == receptor) ||
+                  (mensaje.Transmitter == receptor && mensaje.Receiver == emisor)
+                ) {
+                  hayMensajes = true;
+                  const clase =
+                    mensaje.Transmitter == emisor && mensaje.Receiver == receptor
+                      ? "chat-message"
+                      : "chat-message2";
+                  html += `<div class="${clase}">${mensaje.Message}</div>`;
+                }
+              });
+
+              if (!hayMensajes) {
+                html = '<div class="chat-message3">Chat vacío</div>';
+              }
+
+              return html;
+              
+            
+            
+        
+        }
+
+        
+        
+        
+        
+
+		// agregar evento de cambio al select
+		const select = document.getElementById("usuario2");
+		select.addEventListener("change", mostrarSeleccion);
+        
+	</script>
+
+
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
 
 
 
@@ -216,6 +434,41 @@
 <center>
   <div id="graph_f4"></div>
 </center>
+
+
+
+
+
+<script>
+    // Obtenemos la referencia a la tabla
+const tabla = document.getElementById("tabla-datos3").getElementsByTagName('tbody')[0];
+
+// Obtenemos los datos de la matriz en el localStorage
+const datos = JSON.parse(localStorage.getItem("tabla_permisos")) || [];
+
+// Recorremos los datos y creamos una fila para cada uno
+for (let i = 0; i < datos.length; i++) {
+    
+  
+  if(datos[i].destino == Usuario_Actual_W.carnet){    
+    
+  const fila = tabla.insertRow();
+  const celdaPropietario = fila.insertCell();
+  const celdaUbicacion = fila.insertCell();
+  const celdaArchivo = fila.insertCell();
+  const celdaPermisos = fila.insertCell();
+  celdaPropietario.innerHTML = datos[i].propietario;
+   
+  celdaUbicacion.innerHTML = datos[i].ubicacion;
+  celdaArchivo.innerHTML = datos[i].archivo;
+  celdaPermisos.innerHTML = datos[i].permisos;
+  }
+}
+</script>
+   
+
+
+
 
 
 

@@ -13,6 +13,8 @@
     <script src="../Src//code//usuario_fijo.js"> </script>
     <script src="../Src/code/crypto-js.js"></script>
     <script src="../Src/code/arbol_enario.js"></script>
+    <script src="../Src/code/block_chain.js"></script>
+    
     
     
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -118,65 +120,165 @@ $(".nav2").click(function(){
     
 
     
-<center>
-<table id="tabla-datos">
-  <thead>
-    <tr>
-      <th colspan="3" style="text-align:center; background-color: #292626;">Usuarios (In-Orden)</th>
-    </tr>
-    <tr>
-      <th>Carnet</th>
-      <th>Nombre</th>
-      <th>Contraseña</th>
-    </tr>
-  </thead>
-  <tbody>
-    <!-- Aquí se agregarán las filas de datos -->
-  </tbody>
-</table>
-</center>
+<div class="container">
+    <div class="chat-header">Tabla In-Orden</div>
+        <div class = "center-div">
+            <table id="tabla-datos">
+              <thead>
+                <tr>
+                  <th>Carnet</th>
+                  <th>Nombre</th>
+                  <th>Contraseña</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Aquí se agregarán las filas de datos -->
+              </tbody>
+            </table>
+        </div>
+</div>
+
+   
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
     
-    
-    
-<center>
-<table id="tabla-datos2">
-  <thead>
-    <tr>
-      <th colspan="3" style="text-align:center; background-color: #292626;">Usuarios (Tabla Hash)</th>
-    </tr>
-    <tr>
-      <th>Carnet</th>
-      <th>Nombre</th>
-      <th>Contraseña</th>
-    </tr>
-  </thead>
-  <tbody>
-    <!-- Aquí se agregarán las filas de datos -->
-  </tbody>
-</table>
-</center>
-    
+<div class="container">
+    <div class="chat-header">Tabla Hash</div>
+        <div class = "center-div">
+            <table id="tabla-datos2">
+              <thead>
+                <tr>
+                  <th>Carnet</th>
+                  <th>Nombre</th>
+                  <th>Contraseña</th>
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Aquí se agregarán las filas de datos -->
+              </tbody>
+            </table>
+        </div>
+</div>
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>  
+   
+   
+
+<div class="container">
+    <div class="chat-header">Tabla de Compartidos</div>
+        <div class = "center-div">
+            <table id="tabla-datos3">
+              <thead>
+                <tr>
+                  <th>Propietario</th>
+                  <th>Destino</th>
+                  <th>Ubicación</th>
+                  <th>Archivo</th>
+                  <th>Permisos</th>      
+                </tr>
+              </thead>
+              <tbody>
+                <!-- Aquí se agregarán las filas de datos -->
+              </tbody>
+            </table>
+        </div>
+</div> 
+   
+   
+   
+<br>
+<br>
+<br>
+<br>
+<br>  
     
 
-<center>
-<table id="tabla-datos3">
-  <thead>
-    <tr>
-      <th colspan="5" style="text-align:center; background-color: #292626;">Usuarios</th>
-    </tr>
-    <tr>
-        <th>Propietario</th>
-        <th>Destino</th>
-        <th>Ubicación</th>
-        <th>Archivo</th>
-        <th>Permisos</th>      
-    </tr>
-  </thead>
-  <tbody>
-    <!-- Aquí se agregarán las filas de datos -->
-  </tbody>
-</table>
-</center>
+  
+  
+
+<div class="container">
+    <div class="chat-header">Reporte de Bloques</div>
+    <div class="chat-header">
+           <input type="submit" class="boton2" name="" value="Anterior" onclick="anterior()">
+           <input type="submit" class="boton2" name="" value="Nodo Inicial" onclick="nodoInicial()">
+           <input type="submit" class="boton2" name="" value="Siguiente" onclick="siguiente()">
+    </div>
+    
+        <div class = "center-div"  id="tabla_mensajes">
+            <table class="tabla_reporte">
+              <tr>
+                <th>Index</th>
+                <td></td>
+              </tr>
+              <tr>
+                <th>Timestamp</th>
+                <td></td>
+              </tr>
+              <tr>
+                <th>Transmitter</th>
+                <td></td>
+              </tr>
+              <tr>
+                <th>Receiver</th>
+                <td></td>
+              </tr>
+              <tr>
+                <th>Message</th>
+                <td></td>
+              </tr>
+              <tr>
+                <th>Previus Hash</th>
+                <td></td>
+              </tr>
+              <tr>
+                <th>Hash del Bloque</th>
+                <td></td>
+              </tr>
+            </table>
+        </div>
+</div>
+   
+   
+   
+<br>
+<br>
+<br>
+<br>
+<br>  
+    
+
+<script>
+        // Obtener la matriz de mensajes del local storage
+        let mensajes = JSON.parse(localStorage.getItem("mensajeria"));
+
+    // Si la matriz existe y no está vacía
+    if (mensajes && mensajes.length > 0) {
+      // Obtener el primer objeto de la matriz
+      let primerMensaje = mensajes[0];
+
+      // Actualizar el contenido de las celdas de la tabla con los valores del objeto
+      document.querySelector(".tabla_reporte tr:nth-child(1) td:nth-child(2)").textContent = primerMensaje.index;
+      document.querySelector(".tabla_reporte tr:nth-child(2) td:nth-child(2)").textContent = primerMensaje.Timestamp;
+      document.querySelector(".tabla_reporte tr:nth-child(3) td:nth-child(2)").textContent = primerMensaje.Transmitter;
+      document.querySelector(".tabla_reporte tr:nth-child(4) td:nth-child(2)").textContent = primerMensaje.Receiver;
+      document.querySelector(".tabla_reporte tr:nth-child(5) td:nth-child(2)").textContent = primerMensaje.Message;
+      document.querySelector(".tabla_reporte tr:nth-child(6) td:nth-child(2)").textContent = primerMensaje.PreviusHash;
+      document.querySelector(".tabla_reporte tr:nth-child(7) td:nth-child(2)").textContent = primerMensaje.Hash;
+    }
+
+</script>
+    
    
    
    

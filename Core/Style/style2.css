@@ -396,9 +396,17 @@ td, th {
 
 
 
-#tabla-datos {
+
+
+
+
+
+
+
+
+#tabla-datos  {
   border-collapse: collapse;
-  width: 80%;
+  width: 100%;
   margin: 20px auto;
   background-color: #fff;
   border: 1px solid #ccc;
@@ -408,11 +416,14 @@ td, th {
 #tabla-datos th,
 #tabla-datos td {
   padding: 12px 15px;
-  text-align: left;
+  text-align:center;
+  color: black;
+  text-decoration-style: double;
+
 }
 
 #tabla-datos th {
-  background-color: #3d3f3d;
+  background-color: #5d5a5a;
   color: #fff;
   font-weight: bold;
   text-transform: uppercase;
@@ -434,9 +445,10 @@ td, th {
 
 
 
-#tabla-datos2 {
+
+#tabla-datos2  {
   border-collapse: collapse;
-  width: 80%;
+  width: 100%;
   margin: 20px auto;
   background-color: #fff;
   border: 1px solid #ccc;
@@ -446,11 +458,14 @@ td, th {
 #tabla-datos2 th,
 #tabla-datos2 td {
   padding: 12px 15px;
-  text-align: left;
+  text-align:center;
+  color: black;
+  text-decoration-style: double;
+
 }
 
 #tabla-datos2 th {
-  background-color: #3d3f3d;
+  background-color: #5d5a5a;
   color: #fff;
   font-weight: bold;
   text-transform: uppercase;
@@ -468,14 +483,9 @@ td, th {
 
 
 
-
-
-
-
-
-#tabla-datos3 {
+#tabla-datos3  {
   border-collapse: collapse;
-  width: 80%;
+  width: 100%;
   margin: 20px auto;
   background-color: #fff;
   border: 1px solid #ccc;
@@ -485,11 +495,14 @@ td, th {
 #tabla-datos3 th,
 #tabla-datos3 td {
   padding: 12px 15px;
-  text-align: left;
+  text-align:center;
+  color: black;
+  text-decoration-style: double;
+
 }
 
 #tabla-datos3 th {
-  background-color: #3d3f3d;
+  background-color: #5d5a5a;
   color: #fff;
   font-weight: bold;
   text-transform: uppercase;
@@ -503,3 +516,119 @@ td, th {
   background-color: #0490ec;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+.container {
+  display:block;
+  flex-direction: column;
+  height: 500px;
+  margin: 0 auto;
+  max-width: 70%;
+  background-color: #637671;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+    
+}
+
+
+.chat-header {
+  background-color: #57534e;
+  color: #fff;
+  font-size: 24px;
+  font-weight: 700;
+  text-align: center;
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+
+.center-div {
+  display:block;
+  justify-content: center;
+  align-items: center;
+  height: 90%;
+    overflow-y: scroll;
+}
+
+
+
+
+
+
+/* Estilo para el botón */
+.boton2 {
+  display: inline-block;
+  padding: 10px 20px; /* Ajusta el padding según tus necesidades */
+  font-size: 16px; /* Ajusta el tamaño de fuente según tus necesidades */
+  font-weight: bold;
+  text-decoration: none;
+  background-color: #007bff; /* Ajusta el color de fondo según tus necesidades */
+  color: #fff; /* Ajusta el color de texto según tus necesidades */
+  border: none;
+  border-radius: 5px; /* Ajusta el radio de borde según tus necesidades */
+  cursor:auto;
+  transition: background-color 0.3s ease; /* Añade una transición suave al cambio de color de fondo */
+}
+
+/* Estilo para el botón al pasar el cursor por encima */
+.boton2:hover {
+  background-color: #0056b3; /* Ajusta el color de fondo al pasar el cursor por encima según tus necesidades */
+}
+
+
+
+
+
+
+
+
+
+
+.tabla_reporte {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 20px auto;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+
+.tabla_reporte th,
+.tabla_reporte td {
+  padding: 12px;
+  text-align:center;
+  color: black;
+  text-decoration-style: double;
+  border: 1px solid #ccc;
+  width: 50%;
+}
+
+.tabla_reporte th {
+  background-color: #5d5a5a;
+  color: #fff;
+  font-weight: bold;
+  text-transform: uppercase;
+  border: 1px solid #ccc;
+}
+
+.tabla_reporte td:last-child {
+  width: auto;
+}
+
+.tabla_reporte tbody tr:nth-child(even) {
+  background-color: #a4a1a1;
+}
+
+.tabla_reporte tbody tr:hover {
+  background-color: #0490ec;
+}

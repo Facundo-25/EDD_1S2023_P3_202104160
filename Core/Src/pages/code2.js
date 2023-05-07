@@ -17,6 +17,20 @@ function F_LimpiezaLocal(){
 
 function F_filltableHash(){
     
+    
+   //CREACION DEL OBJETO BLOCKCHAIN
+   const blockchain = new BlockChain();
+    
+    localStorage.setItem('blockChain', JSON.stringify(blockchain));
+
+    
+    localStorage.setItem("mensajeria", JSON.stringify([]));
+
+    
+    localStorage.setItem("count", -1);
+    
+    
+    
     const tablaHash = new HashTable();
     
     const matrizDatos = JSON.parse(localStorage.getItem('temp_table_inorden'));
@@ -41,34 +55,6 @@ function F_filltableHash(){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function F_filltableInOrden(){
     
     let tree = make_graphviz(JSON.parse(localStorage.getItem('usuarios')));
@@ -79,6 +65,8 @@ function F_filltableInOrden(){
 }
 
 function F_CargaMasiva() {
+   
+    
   // Crea un elemento de tipo 'input' de tipo 'file'
   const input = document.createElement('input');
   input.type = 'file';
@@ -118,4 +106,78 @@ function F_CargaMasiva() {
 
   // Hace clic en el elemento 'input' para abrir el selector de archivos
   input.click();
+}
+
+
+
+
+function anterior(){
+    
+    let tabla = document.querySelector('.tabla_reporte');
+    let index = tabla.rows[0].cells[1].textContent;    
+    let numeroInt = parseInt(index);
+    numeroInt = numeroInt -1;
+    
+    if(numeroInt < 0 ){
+        alert("Ya no se tienen registros");
+    } else {
+        
+      let mensajes = JSON.parse(localStorage.getItem("mensajeria"));
+      let primerMensaje = mensajes[numeroInt];
+      document.querySelector(".tabla_reporte tr:nth-child(1) td:nth-child(2)").textContent = primerMensaje.index;
+      document.querySelector(".tabla_reporte tr:nth-child(2) td:nth-child(2)").textContent = primerMensaje.Timestamp;
+      document.querySelector(".tabla_reporte tr:nth-child(3) td:nth-child(2)").textContent = primerMensaje.Transmitter;
+      document.querySelector(".tabla_reporte tr:nth-child(4) td:nth-child(2)").textContent = primerMensaje.Receiver;
+      document.querySelector(".tabla_reporte tr:nth-child(5) td:nth-child(2)").textContent = primerMensaje.Message;
+      document.querySelector(".tabla_reporte tr:nth-child(6) td:nth-child(2)").textContent = primerMensaje.PreviusHash;
+      document.querySelector(".tabla_reporte tr:nth-child(7) td:nth-child(2)").textContent = primerMensaje.Hash;
+    }
+}
+
+function siguiente(){
+    let tabla = document.querySelector('.tabla_reporte');
+    let index = tabla.rows[0].cells[1].textContent;    
+    let numeroInt = parseInt(index);
+    numeroInt = numeroInt + 1;
+    
+        if(localStorage.getItem("mensajeria")){
+            let mensajes = JSON.parse(localStorage.getItem("mensajeria"));
+            if(mensajes.length > numeroInt){
+                let primerMensaje = mensajes[numeroInt];
+                document.querySelector(".tabla_reporte tr:nth-child(1) td:nth-child(2)").textContent = primerMensaje.index;
+                document.querySelector(".tabla_reporte tr:nth-child(2) td:nth-child(2)").textContent = primerMensaje.Timestamp;
+                document.querySelector(".tabla_reporte tr:nth-child(3) td:nth-child(2)").textContent = primerMensaje.Transmitter;
+                document.querySelector(".tabla_reporte tr:nth-child(4) td:nth-child(2)").textContent = primerMensaje.Receiver;
+                document.querySelector(".tabla_reporte tr:nth-child(5) td:nth-child(2)").textContent = primerMensaje.Message;
+                document.querySelector(".tabla_reporte tr:nth-child(6) td:nth-child(2)").textContent = primerMensaje.PreviusHash;
+                document.querySelector(".tabla_reporte tr:nth-child(7) td:nth-child(2)").textContent = primerMensaje.Hash;
+            } else {
+                alert("Ya no se tiene registros");
+            }
+        } else {
+            alert("No hay datos en el almacenamiento local");
+        }
+    
+}
+
+
+
+function nodoInicial(){
+    // Obtener la matriz de mensajes del local storage
+    let mensajes = JSON.parse(localStorage.getItem("mensajeria"));
+
+    // Si la matriz existe y no está vacía
+    if (mensajes && mensajes.length > 0) {
+      // Obtener el primer objeto de la matriz
+      let primerMensaje = mensajes[0];
+
+      // Actualizar el contenido de las celdas de la tabla con los valores del objeto
+      document.querySelector(".tabla_reporte tr:nth-child(1) td:nth-child(2)").textContent = primerMensaje.index;
+      document.querySelector(".tabla_reporte tr:nth-child(2) td:nth-child(2)").textContent = primerMensaje.Timestamp;
+      document.querySelector(".tabla_reporte tr:nth-child(3) td:nth-child(2)").textContent = primerMensaje.Transmitter;
+      document.querySelector(".tabla_reporte tr:nth-child(4) td:nth-child(2)").textContent = primerMensaje.Receiver;
+      document.querySelector(".tabla_reporte tr:nth-child(5) td:nth-child(2)").textContent = primerMensaje.Message;
+      document.querySelector(".tabla_reporte tr:nth-child(6) td:nth-child(2)").textContent = primerMensaje.PreviusHash;
+      document.querySelector(".tabla_reporte tr:nth-child(7) td:nth-child(2)").textContent = primerMensaje.Hash;
+    }
 }
