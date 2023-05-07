@@ -3,9 +3,58 @@ function F_CerrarSesion(){
 }
 
 
+
 function F_ReporteChats(){
-    showUser();
+    
+  var   codigoGraphviz = generarDotCodeDesdeLocalStorage();
+
+  // Generar la imagen con Graphviz utilizando la librería Viz.js
+  var imagen = Viz(codigoGraphviz);
+  
+  // Agregar la imagen al contenedor en la página HTML
+  document.getElementById('graph').innerHTML = imagen;
 }
+
+
+
+
+function generarDotCodeDesdeLocalStorage() {
+  // Obtener la matriz "mensajeria" del localStorage
+  let mensajeria = JSON.parse(localStorage.getItem('mensajeria'));
+
+  let dotCode = "digraph G {\n";
+  dotCode += 'node [shape=record];\n';
+
+  // Iterar sobre cada objeto en la matriz "mensajeria"
+  for (let i = 0; i < mensajeria.length; i++) {
+    let obj = mensajeria[i];
+
+    // Crear un nodo para el objeto
+    let node = "node" + i;
+    dotCode += node + ' [label="{Index: ' + i + '|';
+    dotCode += 'TimeStamp: ' + obj.Timestamp + '|';
+    dotCode += 'Emisor: ' + obj.Transmitter + '|';
+    dotCode += 'Receptor: ' + obj.Receiver + '|';
+    dotCode += 'Mensaje: ' + obj.Message_E + '|';
+    dotCode += 'PreviousHash: ' + obj.PreviusHash + '|';
+    dotCode += 'Hash: ' + obj.Hash + '}"];\n';
+
+    // Crear una arista entre el nodo actual y el nodo anterior (si existe)
+    if (i > 0) {
+      let prevNode = "node" + (i - 1);
+      dotCode += prevNode + ' -> ' + node + ';\n';
+    }
+  }
+
+  dotCode += '}';
+
+  return dotCode;
+}
+
+
+
+
+
 
 
 function F_LimpiezaLocal(){
@@ -148,7 +197,7 @@ function siguiente(){
                 document.querySelector(".tabla_reporte tr:nth-child(2) td:nth-child(2)").textContent = primerMensaje.Timestamp;
                 document.querySelector(".tabla_reporte tr:nth-child(3) td:nth-child(2)").textContent = primerMensaje.Transmitter;
                 document.querySelector(".tabla_reporte tr:nth-child(4) td:nth-child(2)").textContent = primerMensaje.Receiver;
-                document.querySelector(".tabla_reporte tr:nth-child(5) td:nth-child(2)").textContent = primerMensaje.Message;
+                document.querySelector(".tabla_reporte tr:nth-child(5) td:nth-child(2)").textContent = primerMensaje.Message_E;
                 document.querySelector(".tabla_reporte tr:nth-child(6) td:nth-child(2)").textContent = primerMensaje.PreviusHash;
                 document.querySelector(".tabla_reporte tr:nth-child(7) td:nth-child(2)").textContent = primerMensaje.Hash;
             } else {
@@ -176,7 +225,7 @@ function nodoInicial(){
       document.querySelector(".tabla_reporte tr:nth-child(2) td:nth-child(2)").textContent = primerMensaje.Timestamp;
       document.querySelector(".tabla_reporte tr:nth-child(3) td:nth-child(2)").textContent = primerMensaje.Transmitter;
       document.querySelector(".tabla_reporte tr:nth-child(4) td:nth-child(2)").textContent = primerMensaje.Receiver;
-      document.querySelector(".tabla_reporte tr:nth-child(5) td:nth-child(2)").textContent = primerMensaje.Message;
+      document.querySelector(".tabla_reporte tr:nth-child(5) td:nth-child(2)").textContent = primerMensaje.Message_E;
       document.querySelector(".tabla_reporte tr:nth-child(6) td:nth-child(2)").textContent = primerMensaje.PreviusHash;
       document.querySelector(".tabla_reporte tr:nth-child(7) td:nth-child(2)").textContent = primerMensaje.Hash;
     }

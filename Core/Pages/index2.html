@@ -272,7 +272,7 @@ $(".nav2").click(function(){
       document.querySelector(".tabla_reporte tr:nth-child(2) td:nth-child(2)").textContent = primerMensaje.Timestamp;
       document.querySelector(".tabla_reporte tr:nth-child(3) td:nth-child(2)").textContent = primerMensaje.Transmitter;
       document.querySelector(".tabla_reporte tr:nth-child(4) td:nth-child(2)").textContent = primerMensaje.Receiver;
-      document.querySelector(".tabla_reporte tr:nth-child(5) td:nth-child(2)").textContent = primerMensaje.Message;
+      document.querySelector(".tabla_reporte tr:nth-child(5) td:nth-child(2)").textContent = primerMensaje.Message_E;
       document.querySelector(".tabla_reporte tr:nth-child(6) td:nth-child(2)").textContent = primerMensaje.PreviusHash;
       document.querySelector(".tabla_reporte tr:nth-child(7) td:nth-child(2)").textContent = primerMensaje.Hash;
     }
@@ -314,6 +314,12 @@ for (let i = 0; i < datos.length; i++) {
     
 <center>
 <div id="graph"></div>
+</center>
+
+   
+   
+   <center>
+<div id="graph2"></div>
 </center>
     
     

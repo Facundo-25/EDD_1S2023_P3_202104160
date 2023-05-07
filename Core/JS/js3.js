@@ -176,6 +176,24 @@ function option7(){
 
 
 
+function buscar(){
+    //VACIA EL DIV
+    var divCarpetas = document.getElementById("carpetas");
+    divCarpetas.innerHTML = "";
+    
+    //OBTENIENDO EL VALOR DE LA NAVEGACIÓN
+    var labelElement = document.querySelector('.etiqueta');
+    var textoLabel = labelElement.value;
+    
+    
+    carpetas.getHTML(textoLabel);
+}
+
+
+
+
+
+
 
 
 
@@ -516,18 +534,19 @@ function enviar(){
     
     */
     
-    
+    let countador = increaseCount();
     
     if(mensaje){
     
         const mens = {
-            index: increaseCount(),
+            index: countador,
             Transmitter:   Usuario_Actual_W.carnet,
             Receiver: destino,
             Message:  mensaje,
+            Message_E: cifrarConAES(mensaje),
             Timestamp: getFormattedDateTime(),
-            PreviusHash : "undefined" ,
-            Hash:"undefined"
+            PreviusHash : devolverpreviushash(countador, mensaje ,destino, Usuario_Actual_W.carnet),
+            Hash: cifrarConAES(countador.toString()+ getFormattedDateTime() +Usuario_Actual_W.carnet + destino + mensaje  )
         }
 
          matriz_mensaje.push(mens);
@@ -547,8 +566,49 @@ function enviar(){
 
 
 
+function devolverpreviushash(index, mensaje){
+    console.log(index);
+    if(index == "0"){
+        return "0000";
+    } else {
+        return cifrarConAES2(mensaje);
+        
+    }
+    
+}
 
 
 
+    // Definir la función de cifrado
+function cifrarConAES(contraseña) {
+  // Definir la cadena de texto a cifrar
+  const texto_claro = "Hola, este es mi mensaje secreto";
 
+  // Convertir la contraseña y el vector de inicialización a formatos compatibles con CryptoJS
+  const clave = CryptoJS.enc.Utf8.parse(contraseña);
+  const iv = CryptoJS.enc.Utf8.parse(contraseña.substring(0, 16));
+
+  // Cifrar la cadena de texto usando AES
+  const texto_cifrado = CryptoJS.AES.encrypt(texto_claro, clave, { iv: iv });
+
+  // Devolver la cadena de texto cifrada como una cadena de caracteres
+  return texto_cifrado.toString();
+}
+
+
+
+function cifrarConAES2(contraseña) {
+  // Definir la cadena de texto a cifrar
+  const texto_claro = "HOY SALE EDD";
+
+  // Convertir la contraseña y el vector de inicialización a formatos compatibles con CryptoJS
+  const clave = CryptoJS.enc.Utf8.parse(contraseña);
+  const iv = CryptoJS.enc.Utf8.parse(contraseña.substring(0, 16));
+
+  // Cifrar la cadena de texto usando AES
+  const texto_cifrado = CryptoJS.AES.encrypt(texto_claro, clave, { iv: iv });
+
+  // Devolver la cadena de texto cifrada como una cadena de caracteres
+  return texto_cifrado.toString();
+}
 
